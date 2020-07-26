@@ -18,7 +18,8 @@ Write a code which uses control statements such that the spiderman reaches the h
 ### UI
  Moving from left to right
 * A To Do list on the left (shows an overview of what needs to be done) </br>
-* Helper functions and keywords (Functions you can use to take the information or do tasks, Eg: forward()- moves spiderman one block forward) </br>
+* Helper functions and keywords </br>
+(Functions you can use to take the information or do tasks, Eg: forward()- moves spiderman one block forward) </br>
 * Stage </br>
 * Code window (You cannot go backspace after going into a new line :(  ...we are working on fixing it) </br>
 
