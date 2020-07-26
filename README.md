@@ -2,7 +2,7 @@
 Help people learn to code python, using fun games.
 
 ## Dependencies
-1. Pygame
+* Pygame
 
 ## Why we made it?
 We wanted to make programing easy and give a an intuiton of where to use, which statements. So we designed few levels such that each of those would give a baisc understanding of those statements to the player.
@@ -26,4 +26,4 @@ Write a code which uses control statements such that the spiderman reaches the h
 This project was made together in a team, which included Shubham Mukherjee, Purvesh Bane, Harsh Chandorkar and Darshan Dodia.
 
 ## Demo Video
-(Will upload teh video soon)
+(Will upload the video soon)
