@@ -1,8 +1,10 @@
 import pygame
 import sys
 
+#Initializing the pygame
 pygame.init()
 
+#Setting up the window dimentions, font size and color.
 title_bar = "Spiderman: Code to Home"
 WIN_WIDTH = 900
 WIN_HEIGHT = 500
@@ -15,6 +17,7 @@ very_large_font = pygame.font.SysFont("arial", 50)
 
 fonts_dict = {"v_small": very_small_font,"small":small_font, "medium":medium_font, "medium2":medium2_font ,"large":large_font, "v_large":very_large_font}
 
+#Loading up all the images used
 IMAGE_HOME = pygame.image.load('homef.png')
 IMAGE_PINK = pygame.image.load('pink.png')
 IMAGE_ORANGE = pygame.image.load('orange.png')
@@ -26,6 +29,7 @@ END_SCREEN_IMG = pygame.image.load('end_screen.png')
 
 blocks_type_dict = {'pink': IMAGE_PINK, 'orange':IMAGE_ORANGE, 'yellow':IMAGE_YELLOW, 'home':IMAGE_HOME, 'villan':IMAGE_DOC}
 
+#Initialize the screen
 WIN = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
 pygame.display.set_caption(title_bar)
 
@@ -44,6 +48,8 @@ stage_selected = False
 keys_pressed = []
 lines = []
 
+
+#Ans Key for each stages
 for_lines = ['for steps in range(13):', '\tif block==yellow:', '\t\tforward()', '\telif block==pink:', '\t\tright()', '\telif block==villan:', '\t\tjump()', '\tsteps=steps+1']
 for_char_render = ["down", "down", "down", "down", "down", "jump_l", "left","up","up","up","up","up"]
 
@@ -55,8 +61,9 @@ if_else_char_render = ["left", "left", "left", "down", "down", "right", "right",
 
 
 #Seed
-CODE_X = 603
-CODE_Y = 61
+#Uncomment the below 2 lines, if stages not rendered at centre
+#CODE_X = 603
+#CODE_Y = 61
 
 CODE_X_SPACING = 10
 CODE_Y_SPACING = 30
@@ -65,6 +72,13 @@ FONT_CORR = 3
 score = 0
 
 def blocks_render(block_x, block_y, next_block, block_type):
+    """
+    Arguments: block_x, block_y - Previous x and y co-ordinates of the block
+               next_block - Where the next block should be placed
+               block_type - The color of the block
+               
+    Returns: bloc_x, block_y - Current block co-ordinates
+    """
     if block_type in blocks_type_dict:
         block_image = blocks_type_dict[block_type]
     
@@ -90,6 +104,9 @@ def blocks_render(block_x, block_y, next_block, block_type):
     return block_x, block_y
 
 def while_stage_render():
+    """
+    Renders the while stage
+    """
     
     block_x, block_y = blocks_render(BLOCK_X, BLOCK_Y, "right", "yellow")
     block_x, block_y = blocks_render(block_x, block_y, "right", "orange")
@@ -102,6 +119,9 @@ def while_stage_render():
 
 
 def if_else_stage_render():
+    """
+    Renders the if else stage
+    """
     
     block_x, block_y = blocks_render(BLOCK_X, BLOCK_Y, "left", "yellow")
     block_x, block_y = blocks_render(block_x, block_y, "left", "yellow")
@@ -117,6 +137,9 @@ def if_else_stage_render():
     block_x, block_y = blocks_render(block_x, block_y, "left", "home")
 
 def for_stage_render():
+    """
+    Renders For Stage
+    """
     
     block_x, block_y = blocks_render(BLOCK_X, BLOCK_Y, "down", "yellow")
     block_x, block_y = blocks_render(block_x, block_y, "down", "yellow")
@@ -134,6 +157,12 @@ def for_stage_render():
 
 
 def while_keypoints(executed, score):
+    """
+    Renders the To Do list of the given stage, and after 
+    execution removes, the stuff done correctly form To Do list
+    Arguments: executed - If the user entered code is executed
+               score - How many lines matched the ans key
+    """
     thickness1 = thickness2 = thickness3 = 1
     if executed:
          if score >= 1:
@@ -159,7 +188,12 @@ def while_keypoints(executed, score):
 
        
 def if_else_keypoints(executed, score):
-    
+    """
+    Renders the To Do list of the given stage, and after 
+    execution removes, the stuff done correctly form To Do list
+    Arguments: executed - If the user entered code is executed
+               score - How many lines matched the ans key
+    """
     thickness1 = thickness2 = thickness3 = 1
     if executed:
          if score >= 1:
@@ -184,6 +218,12 @@ def if_else_keypoints(executed, score):
     texts("steps increment", 10, 275, "small")    
     
 def for_keypoints(executed, score):
+    """
+    Renders the To Do list of the given stage, and after 
+    execution removes, the stuff done correctly form To Do list
+    Arguments: executed - If the user entered code is executed
+               score - How many lines matched the ans key
+    """
     thickness1 = thickness2 = thickness3 = 1
     if executed:
          if score >= 1:
@@ -210,7 +250,10 @@ def for_keypoints(executed, score):
 
 
 def pre_char_render(ans_char_render):
-    #None: In case want to render till halfway
+    """
+    Does the calculations, for where the character will move
+    Arguments: ans_key_char - Ans key of the given stage
+    """
     
     char_x, char_y = CHAR_X, CHAR_Y
     for pt in ans_char_render:
@@ -246,6 +289,11 @@ def pre_char_render(ans_char_render):
             
 
 def special_characters():
+       """
+       Renders the special symbols on screen
+       Returns: The rectangle object, which can
+                be used to detect the mouse click
+       """
         
        colon = pygame.draw.rect(WIN, FONT_COLOR, (600, 440, 100, 30), 1)
        texts(":", 650, 445, "small")
@@ -264,6 +312,11 @@ def special_characters():
        
        
 def chars_to_line(keys_pressed):
+    """
+    Used to convert the input characters, into a string
+    Arguments: keys_pressed - List of keys pressed
+    Returns: line - converted list of character, into a single line
+    """
     line = ''
     for key in keys_pressed:
         line += key
@@ -272,6 +325,12 @@ def chars_to_line(keys_pressed):
 
 
 def texts(text, x,y, font_size):
+    """
+    Used to display the font anywhere on the screen
+    Arguments: text - Text to display
+               x,y - Co-ordinates of the text
+               font_size - size to be used
+    """
     
    if font_size in fonts_dict:
        current_font = fonts_dict[font_size]
@@ -284,6 +343,11 @@ def texts(text, x,y, font_size):
        
        
 def main_menu(stage_selected):
+    """
+    Used to render the main menu
+    Arguments: stage_selected - Checks if the stage is already selected
+    Returns: stage - string containing the name of the stage
+    """
     print("__MAIN MENU__")
     WIN.blit(MENU_IMG, (0,0))
     pygame.display.update()
@@ -328,6 +392,13 @@ def main_menu(stage_selected):
                     return "credits"
  
 def stage_character_render(char_x, char_y, stage):
+    """
+    Used to render the character and the  stage
+    Arguments: char_x, char_y - X and Y coordinates of character
+    Returns: colon, less_than, plus, equal_to, open_paren, 
+             close_paren - Rectangle objects of these symbols 
+             to detect if it's clicked by mouse
+    """
     
     #Fill the screen 
     WIN.fill(BG_COLOR)
@@ -389,6 +460,7 @@ def stage_character_render(char_x, char_y, stage):
 stage = main_menu(stage_selected)
 
 if stage == 'stage_while':
+    #Initialize variables for this stage
     pygame.display.set_caption("WHILE STAGE")
     print("__WHILE STAGE__")
     BLOCK_X = 200
@@ -401,6 +473,7 @@ if stage == 'stage_while':
     ans_char_render = while_char_render
     
 elif stage == 'stage_for':
+    #Initialize variables for this stage
     pygame.display.set_caption("FOR STAGE")
     print("__FOR STAGE__")
     BLOCK_X = 450
@@ -413,6 +486,7 @@ elif stage == 'stage_for':
     ans_char_render = for_char_render
     
 elif stage == 'stage_if_else':
+    #Initialize variables for this stage
     pygame.display.set_caption("IF ELSE STAGE")
     print("__IF ELSE STAGE__")
     BLOCK_X = 450
@@ -425,6 +499,7 @@ elif stage == 'stage_if_else':
     ans_char_render = if_else_char_render
     
 elif stage == 'credits':
+    #Display the credits
     pygame.display.set_caption("CREDITS")
     WIN.blit(END_SCREEN_IMG, (0,0))
     texts("Made with love by:", 430, 125, "v_large")
@@ -448,11 +523,14 @@ colon, less_than, plus, equal_to, open_paren, close_paren = stage_character_rend
 # print("\nAns to this stage: ",ans_lines)
 # =============================================================================
 
+
+#Main Game Loop
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
     
+        #Check where mouse is clicked and act accordingly
         if event.type == pygame.MOUSEBUTTONDOWN :
             x,y = event.pos
             print("Mouse Clicked: ",x,y)
@@ -498,7 +576,8 @@ while not done:
                 
             else:
                 pass
-            
+          
+        #Check which keys are pressed
         if event.type == pygame.KEYDOWN:
             
             #Check if it is the first letter that is typed
