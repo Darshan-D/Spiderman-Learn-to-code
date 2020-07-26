@@ -5,7 +5,7 @@ Help people learn to code python, where the story line is, if you code correctly
 * Pygame
 
 ## Why we made it?
-We wanted to make programing easy and give a an intuiton of where to use, which statements. So we designed few levels such that each of those would give a baisc understanding of those statements to the player.
+We wanted to make programing easy and give an intuiton of where to use, which statements. So we designed few levels such that each of those would give a baisc understanding of those statements to the player.
 
 ### Stages
 * For loop problem
