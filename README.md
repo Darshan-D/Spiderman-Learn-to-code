@@ -24,7 +24,7 @@ Write a code which uses control statements such that the spiderman reaches the h
 * Code window (You cannot go backspace after going into a new line :(  ...we are working on fixing it) </br>
 
 #### Further Imporvements
-We do not compile user input for real, we just match it with the predefined string, thus if user enters extra space, or uses a different logic, it won't work. Can definately try to impove that, wither by adding alternative ans keys, or by making a py interpreter using py itself (pyception!)
+We do not compile user input for real, we just match it with the predefined string, thus if user enters extra space, or uses a different logic, it won't work. Can definately try to impove that, either by adding alternative ans keys, or by making a py interpreter using py itself (pyception!)
 
 This project was made together in a team, which included Shubham Mukherjee, Purvesh Bane, Harsh Chandorkar and Darshan Dodia.
 
