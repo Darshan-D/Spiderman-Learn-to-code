@@ -29,4 +29,4 @@ We do not compile user input for real, we just match it with the predefined stri
 This project was made together in a team, which included Shubham Mukherjee, Purvesh Bane, Harsh Chandorkar and Darshan Dodia.
 
 ## Demo Video
-(Will upload the video soon)
+https://youtu.be/MhkcfQRmSOU
