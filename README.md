@@ -1,6 +1,9 @@
 # Spiderman-Learn-to-code
 Help people learn to code python, where the story line is, if you code correctly, Spiderman will get to reach his home.
 
+## Demo Video
+https://youtu.be/MhkcfQRmSOU
+
 ## Dependencies
 * Pygame
 
@@ -27,6 +30,3 @@ Write a code which uses control statements such that the spiderman reaches the h
 We do not compile user input for real, we just match it with the predefined string, thus if user enters extra space, or uses a different logic, it won't work. Can definately try to impove that, either by adding alternative ans keys, or by making a py interpreter using py itself (pyception!)
 
 This project was made together in a team, which included Shubham Mukherjee, Purvesh Bane, Harsh Chandorkar and Darshan Dodia.
-
-## Demo Video
-https://youtu.be/MhkcfQRmSOU
